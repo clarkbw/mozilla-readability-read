@@ -7,16 +7,20 @@
   <script>
   $(document).ready(function () {
     $("#read").click(function () {
+      var button = $(this);
+      button.prop("disabled", true);
       var url = $("#url").val();
       console.log(url);
       $.ajax({
         url: "/api/readability/" + encodeURIComponent(url),
         dataType: 'json',
         error: function ( jqXHR, textStatus, errorThrown ) {
+          button.prop("disabled", false);
           console.error(errorThrown);
           console.logr(textStatus, errorThrown);
         },
         success: function( data ) {
+          button.prop("disabled", false);
           // console.log('data', data);
           $("#iframe").remove();
           var contents = $('<iframe id="iframe" src="'+document.location+'"/>').appendTo('#content').contents();
