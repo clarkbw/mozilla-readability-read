@@ -34,7 +34,7 @@
     });
 
     // on load lets use the URL provided
-    if (document.location.hash) {
+    if (document.location.hash.length) {
       $("#url").val(document.location.hash.replace(/^#/, ''));
       $("#read").click();
     }
