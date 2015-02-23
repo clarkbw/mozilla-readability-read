@@ -1,0 +1,34 @@
+{
+  "name": "mozilla-readability-read",
+  "version": "1.0.0",
+  "description": "Simple service to display any website in reader mode",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "iojs": "1.0.x"
+  },
+  "keywords": [
+    "readability",
+    "mozilla",
+    "reader"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clarkbw/mozilla-readability-read.git"
+  },
+  "author": "Bryan Clark",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.12.0",
+    "jsdom": "^4.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.2",
+    "request": "^2.53.0"
+  }
+}

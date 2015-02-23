@@ -1,0 +1,65 @@
+<html>
+<head>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="http://mxr.mozilla.org/mozilla-central/source/toolkit/themes/windows/global/aboutReader.css?raw=1"> -->
+  <script>
+  $(document).ready(function () {
+    $("#read").click(function () {
+      var url = $("#url").val();
+      console.log(url);
+      $.ajax({
+        url: "/api/readability/" + encodeURIComponent(url),
+        dataType: 'json',
+        error: function ( jqXHR, textStatus, errorThrown ) {
+          console.error(errorThrown);
+          console.logr(textStatus, errorThrown);
+        },
+        success: function( data ) {
+          // console.log('data', data);
+          $("#iframe").remove();
+          var contents = $('<iframe id="iframe" src="'+document.location+'"/>').appendTo('#content').contents();
+          contents.find('head').append($('<link/>').attr({'href' : 'aboutReader.css', "rel" : "stylesheet"}));
+          contents.find('body').append(data.content);
+        }
+      });
+      // don't allow this click to reload the page
+      return false;
+    });
+  });
+  </script>
+  <style>
+  iframe {
+    margin-top: 20pt;
+    border: 1px solid #ddd;
+    width: 100%;
+    height: 768px;
+  }
+  </style>
+</head>
+<body>
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Mozilla Reader View Test</h1>
+      <p><a href="https://github.com/mozilla/readability" role="button">github.com/mozilla/readability</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-8">
+        <input class="form-control input-lg" type="url" id="url" placeholder="URL"/>
+      </div>
+      <div class="col-xs-4">
+        <button class="btn btn-lg btn-primary" id="read">READER ME</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" id="content"></div>
+    </div>
+
+  </div>
+
+</body>
+</html>
