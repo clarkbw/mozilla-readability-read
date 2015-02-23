@@ -3,13 +3,14 @@
   <title>Mozilla Reader View Test</title>
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="http://mxr.mozilla.org/mozilla-central/source/toolkit/themes/windows/global/aboutReader.css?raw=1"> -->
+
   <script>
   $(document).ready(function () {
     $("#read").click(function () {
       var button = $(this);
       button.prop("disabled", true);
       var url = $("#url").val();
+      document.location.hash = url;
       console.log(url);
       $.ajax({
         url: "/api/readability/" + encodeURIComponent(url),
@@ -31,6 +32,13 @@
       // don't allow this click to reload the page
       return false;
     });
+
+    // on load lets use the URL provided
+    if (document.location.hash) {
+      $("#url").val(document.location.hash.replace(/^#/, ''));
+      $("#read").click();
+    }
+
   });
   </script>
   <style>
