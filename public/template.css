@@ -1,13 +1,31 @@
 /* Edit this CSS to effect the template areas */
-header { }
-header > h1 { }
+header {
+  background-color: #fff;
+  color: #444;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+header > .container {
+  background-color: rgba(255,255,255,0.75);
+}
+header > h1 {
+  text-align: center;
+}
 header > h1 > a {
-  color: #0066dd;
+  color: #fff;
   text-decoration: none;
 }
 header > h1 > a:visited {
-  color: #0066dd;
+  color: #fff;
 }
-header > h2 { }
-header > p { }
-section { }
+header > h2 {
+  text-align: right;
+}
+header > p {
+
+}
+section {
+  font-size: 120%;
+  line-height: 160%;
+}

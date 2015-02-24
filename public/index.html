@@ -9,14 +9,16 @@
 
   <!-- Edit this template to change the layout of the reader view data -->
   <script type="text/template" id="template">
-    <header>
+    <header class="jumbotron" style="background-image:url('<%- image %>');">
+      <div class="container">
       <h1><a href="<%- uri %>"><%- title %></a></h1>
       <h2><%- byline %></h2>
       <p>Dir: <%- dir %></p>
       <p>Length: <%- length %></p>
       <p>Excerpt: <%- excerpt %></p>
+      </div>
     </header>
-    <section>
+    <section class="container">
       <%= content %>
     </section>
   </script>
@@ -44,10 +46,14 @@
           $("#iframe").remove();
           var contents = $('<iframe id="iframe" src="'+document.location+'"/>').appendTo('#content').contents();
           contents.find('head').append([
-            $('<link href="aboutReader.css" rel="stylesheet"/>'),
+            // $('<link href="aboutReader.css" rel="stylesheet"/>'),
+            $('<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">'),
             $('<link href="template.css" rel="stylesheet"/>')
           ]);
+          data.image = $(data.content).find('div.image:first > img').attr('src');
+          console.log('data.image', data.image);
           contents.find('body').append(template( data ));
+          contents.find('div.image:first > img').css('display', 'none');
         }
       });
       // don't allow this click to reload the page
