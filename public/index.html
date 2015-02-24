@@ -1,11 +1,29 @@
 <html>
 <head>
   <title>Mozilla Reader View Test</title>
+
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-  <script>
+  <!-- Edit this template to change the layout of the reader view data -->
+  <script type="text/template" id="template">
+    <header>
+      <h1><a href="<%- uri %>"><%- title %></a></h1>
+      <h2><%- byline %></h2>
+      <p>Dir: <%- dir %></p>
+      <p>Length: <%- length %></p>
+      <p>Excerpt: <%- excerpt %></p>
+    </header>
+    <section>
+      <%= content %>
+    </section>
+  </script>
+
+  <script type="text/javascript">
   $(document).ready(function () {
+    var template = _.template( $( "#template" ).html() );
     $("#read").click(function () {
       var button = $(this);
       button.prop("disabled", true);
@@ -25,8 +43,11 @@
           // console.log('data', data);
           $("#iframe").remove();
           var contents = $('<iframe id="iframe" src="'+document.location+'"/>').appendTo('#content').contents();
-          contents.find('head').append($('<link/>').attr({'href' : 'aboutReader.css', "rel" : "stylesheet"}));
-          contents.find('body').append(data.content);
+          contents.find('head').append([
+            $('<link href="aboutReader.css" rel="stylesheet"/>'),
+            $('<link href="template.css" rel="stylesheet"/>')
+          ]);
+          contents.find('body').append(template( data ));
         }
       });
       // don't allow this click to reload the page

@@ -1,0 +1,13 @@
+/* Edit this CSS to effect the template areas */
+header { }
+header > h1 { }
+header > h1 > a {
+  color: #0066dd;
+  text-decoration: none;
+}
+header > h1 > a:visited {
+  color: #0066dd;
+}
+header > h2 { }
+header > p { }
+section { }
