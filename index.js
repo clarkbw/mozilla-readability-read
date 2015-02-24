@@ -10,9 +10,6 @@ var app = express();
 
 app.set('port', (process.env.PORT || 3000));
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
 app.get('/api/readability/:url', function (req, res) {
   var url = req.params.url;
 
