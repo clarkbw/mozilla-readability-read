@@ -1,5 +1,7 @@
 # mozilla-readability-read
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/clarkbw/mozilla-readability-read.svg)](https://greenkeeper.io/)
+
 This is a Node.js (io.js) app that uses the [Mozilla Readability](https://github.com/mozilla/readability) code to parse pages and display those pages in an iframe.  It's useful for testing out how a page will render on the Desktop Reader View.
 
 You can use it here: https://moz-readability.herokuapp.com/
